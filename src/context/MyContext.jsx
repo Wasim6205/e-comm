@@ -35,7 +35,21 @@ export const ContextProvider = ({ children }) => {
     );
   };
 
-  const decrementQuantity = (id) => {};
+  let decrementQuantity = (id) => {
+    let clickedProduct = cartItems.find((elem) => elem.id === id);
+
+    if (clickedProduct.quantity === 1) {
+      let arr = cartItems.filter((val) => val.id !== id);
+      setCartItems(arr);
+      return;
+    }
+
+    setCartItems((prev) =>
+      prev.map((val) =>
+        val.id === id ? { ...val, quantity: val.quantity - 1 } : val,
+      ),
+    );
+  };
 
   useEffect(() => {
     getProductsData();

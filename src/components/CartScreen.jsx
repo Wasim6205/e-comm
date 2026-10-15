@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { MyStore } from "../context/MyContext";
 
 const CartScreen = () => {
-  const { cartItems,incrementQuantity } = useContext(MyStore);
+  const { cartItems,incrementQuantity,decrementQuantity } = useContext(MyStore);
 
   const subtotal = cartItems.reduce(
     (total, item) =>
@@ -75,7 +75,7 @@ const CartScreen = () => {
                     <div className="flex flex-wrap items-center justify-between gap-4">
                       {/* Quantity Selector - Design Only */}
                       <div className="flex items-center rounded-lg border border-gray-200 p-1">
-                        <button className="flex h-8 w-8 items-center justify-center rounded-md text-lg text-gray-600 hover:bg-gray-100">
+                        <button onClick={() => decrementQuantity(item.id)} className="flex h-8 w-8 items-center justify-center rounded-md text-lg text-gray-600 hover:bg-gray-100">
                           −
                         </button>
                         <span className="w-9 text-center text-sm font-semibold text-gray-900">
